@@ -1,0 +1,12 @@
+# Dataset
+data/raw/
+data/interim/
+data/processed/
+*.csv
+
+# Jupyter & Python env
+.ipynb_checkpoints/
+__pycache__/
+venv/
+env/
+.env
