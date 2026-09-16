@@ -1,7 +1,4 @@
 # Dataset
-data/raw/
-data/interim/
-data/processed/
 *.csv
 
 # Jupyter & Python env
