@@ -1,9 +1,52 @@
-# Deteksi Sintesis IndoT5 Menggunakan mDeBERTa v3
+# IndoT5 Synthesis Detection Using mDeBERTa v3 
 
-Repository ini berisi keseluruhan pipeline eksperimen untuk mendeteksi teks buatan AI (AI-generated text) pada abstrak jurnal ilmiah berbahasa Indonesia. Fokus utama penelitian ini adalah menguji kemampuan model `mDeBERTa-v3` dalam mendeteksi teks sintesis yang di-generate oleh model `IndoT5-base-paraphrase`.
+## Publication / Citation
+The complete methodology, experiments, and findings of this repository are published in the **International Journal of Data Science (IJODAS)** (SINTA 2). 
 
-## Latar Belakang Proyek
-Meningkatnya penggunaan AI generatif dalam penulisan akademis membutuhkan sistem deteksi yang andal. Proyek ini mengekstraksi abstrak tulisan manusia dari portal jurnal SINTA 3, kemudian menyintesis data ekuivalen menggunakan model `IndoT5-base-paraphrase` untuk membuat dataset klasifikasi yang seimbang. Kemampuan deteksi kemudian dievaluasi menggunakan pendekatan Machine Learning tradisional (Random Forest) sebagai baseline, dan model pre-trained `mDeBERTa-v3` sebagai eksperimen utama.
+**Read the full paper here:** [Zero-Shot Detection of IndoT5-Synthesized Indonesian Scientific Abstracts Using mDeBERTa v3](https://jurnal.yoctobrain.org/index.php/ijodas/article/view/457)
+
+---
+
+## ⚙️ Pipeline
+1. **Data Acquisition:** Scraping raw journal abstracts via OAI-PMH.
+2. **Data Synthesis (IndoT5):** Creating an AI dataset using paraphrasing techniques with `Wikidepia/IndoT5-base-paraphrase`.
+3. **Data Cleaning & Preprocessing:** Removing machine artifacts, case folding, and standardizing text length (truncating to a maximum of 100 words).
+4. **Linguistic Analysis:** Applying the Mann-Whitney U statistical test on 7 linguistic features to identify anomalies in synthesized texts.
+5. **Baseline Model:** Training a Random Forest Classifier based on the extracted linguistic features.
+6. **Advanced Inference (mDeBERTa v3):** Testing Zero-Shot Classification using `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli` under various scenarios (1-aspect, 3-aspect, and 5-aspect) to detect IndoT5 texts.
+
+## Directory Structure
+* `/data` : Folder for storing raw, interim, and processed datasets. *(Ignored by gitignore)*
+* `/notebooks` : A collection of Jupyter Notebooks containing sequential experiments from scraping to model evaluation.
+* `requirements.txt` : List of Python library dependencies.
+
+## Technologies Used
+* **Hugging Face Transformers** (IndoT5 & mDeBERTa v3)
+* **Python 3.12.13**
+* **Pandas, NumPy, Scikit-Learn** (Data processing & Baseline ML)
+* **BeautifulSoup & Requests** (Web Scraping OAI-PMH)
+* **Matplotlib & Seaborn** (Data Visualization)
+
+## How to Run
+1. Clone this repository.
+2. Install the dependencies by running `pip install -r requirements.txt`.
+3. Execute the notebooks in the `/notebooks` folder sequentially, starting from `01_data_scraping.ipynb`.
+
+<br>
+
+---
+---
+
+<br>
+
+# Deteksi Sintesis IndoT5 Menggunakan mDeBERTa v3 
+
+## Publikasi / Sitasi
+Metodologi, eksperimen, dan temuan lengkap dari repositori ini telah dipublikasikan pada **International Journal of Data Science (IJODAS)** (SINTA 2).
+
+**Baca naskah lengkapnya di sini:** [Zero-Shot Detection of IndoT5-Synthesized Indonesian Scientific Abstracts Using mDeBERTa v3](https://jurnal.yoctobrain.org/index.php/ijodas/article/view/457)
+
+---
 
 ## Alur Kerja (Pipeline)
 1. **Data Acquisition:** Scraping data mentah abstrak jurnal via OAI-PMH.
@@ -20,7 +63,7 @@ Meningkatnya penggunaan AI generatif dalam penulisan akademis membutuhkan sistem
 
 ## Teknologi yang Digunakan
 * **Hugging Face Transformers** (IndoT5 & mDeBERTa v3)
-* **Python 3.x**
+* **Python 3.12.13**
 * **Pandas, NumPy, Scikit-Learn** (Data processing & Baseline ML)
 * **BeautifulSoup & Requests** (Web Scraping OAI-PMH)
 * **Matplotlib & Seaborn** (Visualisasi Data)
